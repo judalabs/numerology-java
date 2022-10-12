@@ -1,14 +1,13 @@
-import java.util.stream.Stream;
-
-import numerology.Kaballah;
+import numerology.FullNumerology;
 
 class Main {
 
     public static void main(String[] args) {
+        boolean printPartials = true;
 
-        Stream.of("Stefanny Yumi Nemoto",
-                        "Rodrigo Judá Conceição"
-                ).forEach(nome -> new Kaballah(nome, false).execute());
+        new FullNumerology("Rodrigo Judá Conceição", "20/11/1992", printPartials);
+
+//        new Kaballah("Miguel", printPartials).execute();
     }
 
 }

@@ -13,7 +13,14 @@ public enum DescriptionUtils {
     EIGHT(8),
     NINE(9),
     ELEVEN(11),
+    EIGHTEEN(18),
     TWENTY_TWO(22),
+    THIRTY_THREE(33),
+    FORTY_FOUR(44),
+    FIFTY_FIVE(55),
+    SIXTY_SIX(66),
+    SEVENTY_SEVEN(77),
+    HUNDRED_EIGHT(108)
     ;
     public final int value;
 

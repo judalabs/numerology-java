@@ -1,23 +1,27 @@
-package numerology;
+package numerology.converter;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 import utils.DescriptionUtils;
 
-abstract class BaseMath {
+public abstract class BaseMath {
 
     static final int INIT = 'a';
 
-    private final String name;
-    private final boolean printPartials;
+    protected final String name;
+    protected final boolean printPartials;
+    private List<Integer> masterNumbers = List.of(9,11,18, 22, 33, 44, 55, 66, 77, 108);
 
-    BaseMath(String name, boolean printPartials) {
+    protected BaseMath(String name, boolean printPartials) {
         this.printPartials = printPartials;
         this.name = name.toLowerCase().trim();
     }
 
-    abstract int calc(String nome);
+    public abstract int calc();
+
+    public abstract String getDescription();
 
     void printPartials(int value) {
         if(!printPartials) return;
@@ -26,7 +30,7 @@ abstract class BaseMath {
     }
 
     int applyReduction(int number) {
-        if(number <= 9 || number == 11 || number == 22) return number;
+        if(number <= 9 || masterNumbers.contains(number)) return number;
         if(printPartials)
             System.out.println("\nReduction of " + number);
 
@@ -38,12 +42,13 @@ abstract class BaseMath {
     }
 
     public void execute() {
-        final int calcResult = calc(name);
+        final int calcResult = calc();
         final int resultAfterReduction = applyReduction(calcResult);
-        final String result = String.format("\n[%s]\t\t\t%s \t\t\t%s%s",
+        final String result = String.format("\n[%s]\t\t\t%s \t\t\t%s\n%s%s",
                 this.getClass().getSimpleName(),
                 name,
                 resultAfterReduction,
+                getDescription(),
                 printDescription(resultAfterReduction));
         System.out.println(result);
     }

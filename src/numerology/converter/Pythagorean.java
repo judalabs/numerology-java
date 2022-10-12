@@ -1,4 +1,4 @@
-package numerology;
+package numerology.converter;
 
 import java.text.Normalizer;
 
@@ -11,11 +11,16 @@ class Pythagorean extends BaseMath {
     }
 
     @Override
-    public int calc(String name) {
+    public int calc() {
         return Normalizer.normalize(name, Normalizer.Form.NFD).chars()
                 .filter(letter -> letter != ' ')
                 .map(letter -> (letter - INIT) % MULTIPLE + 1)
                 .peek(this::printPartials)
                 .sum();
+    }
+
+    @Override
+    public String getDescription() {
+        return "";
     }
 }

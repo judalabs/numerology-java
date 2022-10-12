@@ -1,4 +1,4 @@
-package numerology;
+package numerology.converter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,10 +28,10 @@ enum KaballahTable {
     }
 
     public static int getValue(int letter) {
-        return Arrays.stream(numerology.KaballahTable.values())
+        return Arrays.stream(KaballahTable.values())
                 .filter(itemEnum -> itemEnum.chars.contains((char) letter))
                 .findFirst()
-                .map(numerology.KaballahTable::getNumber)
+                .map(KaballahTable::getNumber)
                 .orElseThrow(() -> new RuntimeException(letter + " not found"));
     }
 }

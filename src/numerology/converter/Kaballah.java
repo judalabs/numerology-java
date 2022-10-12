@@ -1,4 +1,4 @@
-package numerology;
+package numerology.converter;
 
 import java.text.Normalizer;
 
@@ -9,11 +9,16 @@ public class Kaballah extends BaseMath {
     }
 
     @Override
-    int calc(String name) {
+    public int calc() {
         return Normalizer.normalize(name, Normalizer.Form.NFD).chars()
                 .map(KaballahTable::getValue)
                 .peek(this::printPartials)
                 .sum();
 
+    }
+
+    @Override
+    public String getDescription() {
+        return "";
     }
 }
