@@ -19,7 +19,7 @@ public abstract class BaseMath {
     protected static final char[] VOWELS = new char[]{'a', 'e', 'i', 'o', 'u'};
     private List<Integer> commonMasterNumbers = List.of(11, 22);
     private boolean useMasterNumbers = true;
-    private List<Integer> uncommonMasterNumbers = List.of(18, 33, 44, 55, 66, 77, 108);
+//    private List<Integer> uncommonMasterNumbers = List.of(18, 33, 44, 55, 66, 77, 108);
 
     protected BaseMath(boolean printPartials) {
         this.printPartials = printPartials;

@@ -14,7 +14,7 @@ class MotivationTest {
         assertEquals(6, new Motivation("aeiou", false, Pythagorean::getValue).calcAndPrintReduced());
         assertEquals(6, new Motivation("a e i o u", false, Pythagorean::getValue).calcAndPrintReduced());
         assertEquals(6, new Motivation("a bcd e", false, Pythagorean::getValue).calcAndPrintReduced());
-        assertEquals(6, new Motivation("ã bcd é", false, Pythagorean::getValue).calcAndPrintReduced());
+        assertEquals(6, new Motivation("ã bĉd é", false, Pythagorean::getValue).calcAndPrintReduced());
     }
 
 }
