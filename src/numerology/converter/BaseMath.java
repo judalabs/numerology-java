@@ -23,7 +23,7 @@ public abstract class BaseMath {
 
     public abstract int calc();
 
-    public abstract String getDescription();
+    protected abstract String getDescription();
 
     protected void printPartials(int value) {
         if(!printPartials) return;
@@ -31,7 +31,7 @@ public abstract class BaseMath {
         else System.out.print(value + "+");
     }
 
-    public int applyTheosophicalReduction(int number) {
+    protected int applyTheosophicalReduction(int number) {
         if(number <= 9 || commonMasterNumbers.contains(number)) return number;
         if(printPartials)
             System.out.println("\nReduction of " + number);
