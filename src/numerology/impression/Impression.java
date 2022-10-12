@@ -4,20 +4,20 @@ import java.text.Normalizer;
 import java.util.function.IntUnaryOperator;
 
 import numerology.converter.BaseMath;
-import numerology.converter.Pythagorean;
 
 public class Impression extends BaseMath {
 
     private final IntUnaryOperator convertIt;
 
-    public Impression(String name, boolean printPartials) {
-        super(name, printPartials);
-        convertIt = Pythagorean::getValue;
+    public Impression(String name, boolean printPartials, IntUnaryOperator convertIt) {
+        super(printPartials);
+        withInput(name);
+        this.convertIt = convertIt;
     }
 
     @Override
     public int calc() {
-        return Normalizer.normalize(name, Normalizer.Form.NFD)
+        return Normalizer.normalize(input, Normalizer.Form.NFD)
                 .replaceAll("[^\\p{ASCII}]", "")
                 .chars()
                 .filter(this::isConsonant)

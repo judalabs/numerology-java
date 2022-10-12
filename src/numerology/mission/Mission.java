@@ -4,15 +4,16 @@ import numerology.converter.BaseMath;
 
 public class Mission extends BaseMath {
 
-    public Mission(String birth, boolean printPartials) {
-        super(birth, printPartials);
+    private final int missionValue;
+
+    public Mission(int missionValue, boolean printPartials) {
+        super(printPartials);
+        this.missionValue = missionValue;
     }
 
     @Override
     public int calc() {
-        if(name == null || name.length() == 0) return 0;
-        final String numbersContainedInBirthday = super.name.replaceAll("/", "");
-        return sumDigits(numbersContainedInBirthday);
+        return missionValue;
     }
 
     @Override

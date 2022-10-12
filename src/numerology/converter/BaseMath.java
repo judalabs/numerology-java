@@ -10,15 +10,15 @@ public abstract class BaseMath {
 
     static final int INIT = 'a';
 
-    protected final String name;
+    protected String input;
     protected final boolean printPartials;
     protected final char[] VOWELS = new char[]{'a', 'e', 'i', 'o', 'u'};
     private List<Integer> commonMasterNumbers = List.of(11, 22);
-//    private List<Integer> uncommonMasterNumbers = List.of(18, 33, 44, 55, 66, 77, 108);
+    private boolean useMasterNumbers = true;
+    //    private List<Integer> uncommonMasterNumbers = List.of(18, 33, 44, 55, 66, 77, 108);
 
-    protected BaseMath(String name, boolean printPartials) {
+    protected BaseMath(boolean printPartials) {
         this.printPartials = printPartials;
-        this.name = name.toLowerCase().trim();
     }
 
     public abstract int calc();
@@ -32,7 +32,12 @@ public abstract class BaseMath {
     }
 
     protected int applyTheosophicalReduction(int number) {
-        if(number <= 9 || commonMasterNumbers.contains(number)) return number;
+        if(number <= 9) {
+            return number;
+        }
+        if(useMasterNumbers && commonMasterNumbers.contains(number)) {
+            return number;
+        }
         if(printPartials)
             System.out.println("\nReduction of " + number);
 
@@ -57,19 +62,18 @@ public abstract class BaseMath {
 
         printFinalResult(resultAfterReduction);
 
-        return calcResult;
+        return resultAfterReduction;
     }
 
     private void printFinalResult(int resultAfterReduction) {
-        System.out.println(String.format("\n[%s]\t\t\t%s \t\t\t%s\n%s%s",
+        System.out.println(String.format("\n[%s]\t \t\t\t%s\n%s%s",
                 getNameOf(),
-                name,
                 resultAfterReduction,
                 printPartials ? getDescription() : "",
-                printDescription(resultAfterReduction)));
+                printDescriptionPart(resultAfterReduction)));
     }
 
-    private String printDescription(int resultAfterReduction) {
+    private String printDescriptionPart(int resultAfterReduction) {
         if(!printPartials) return "";
         final String directory = ResultsUtils.getDirectory(resultAfterReduction);
         try {
@@ -82,5 +86,15 @@ public abstract class BaseMath {
         } catch (Exception e) {
             throw new RuntimeException("cound not execute description "+ resultAfterReduction);
         }
+    }
+
+    public BaseMath withInput(String input) {
+        this.input = input.toLowerCase().trim();
+        return this;
+    }
+
+    public BaseMath withMasterNumber(boolean useMasterNumbers) {
+        this.useMasterNumbers = useMasterNumbers;
+        return this;
     }
 }

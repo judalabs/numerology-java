@@ -4,14 +4,19 @@ import numerology.converter.BaseMath;
 
 public class Destiny extends BaseMath {
 
-    public Destiny(String birth, boolean printPartials) {
-        super(birth, printPartials);
+    public Destiny(boolean printPartials) {
+        super(printPartials);
     }
 
     @Override
     public int calc() {
-        if(name == null || name.length() == 0) return 0;
-        final String[] birthParts = name.split("/");
+        if(input == null || input.length() == 0) return 0;
+        return reducingDownMethod();
+    }
+
+    /*There is another way to calculate called 'adding across' but we use the most in use */
+    private int reducingDownMethod() {
+        final String[] birthParts = input.split("/");
         int finalSum = 0;
         for(String birthPart : birthParts) {
             final int sumBirthPart = sumDigits(birthPart);
@@ -31,5 +36,10 @@ public class Destiny extends BaseMath {
                 "o ser humano se desenvolverá numa determinada etapa da sua existência - uma vida no\n" +
                 "plano físico. A nossa evolução está destinada por inarredável lei cósmica; porquanto\n" +
                 "tentemos nos retardar, chegará o momento que o avanço será por imposição da lei.";
+    }
+
+    @Override
+    protected String getNameOf() {
+        return "Destiny | Life Path";
     }
 }

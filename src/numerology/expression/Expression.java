@@ -6,14 +6,18 @@ import numerology.motivation.Motivation;
 
 public class Expression extends BaseMath {
 
-    public Expression(String name, boolean printPartials) {
-        super(name, printPartials);
+    private final Motivation motivation;
+    private final Impression impression;
+
+    public Expression(Motivation motivation, Impression impression, boolean printPartials) {
+        super(printPartials);
+        this.motivation = motivation;
+        this.impression = impression;
     }
 
     @Override
     public int calc() {
-        return new Impression(name, false).calc() +
-                new Motivation(name, false).calc();
+        return motivation.calc() + impression.calc();
     }
 
     @Override

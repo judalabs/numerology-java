@@ -6,13 +6,14 @@ public class Pythagorean extends BaseMath {
 
     private static final int MULTIPLE = 9;
 
-    public Pythagorean(String name) {
-        super(name, true);
+    public Pythagorean(String name, boolean printPartials1) {
+        super(printPartials1);
+        withInput(name);
     }
 
     @Override
     public int calc() {
-        return Normalizer.normalize(name, Normalizer.Form.NFD)
+        return Normalizer.normalize(input, Normalizer.Form.NFD)
                 .replaceAll("[^\\p{ASCII}]", "").chars()
                 .map(Pythagorean::getValue)
                 .peek(this::printPartials)
