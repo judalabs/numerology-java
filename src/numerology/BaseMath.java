@@ -37,14 +37,15 @@ abstract class BaseMath {
         return applyReduction(somaDigitos);
     }
 
-    public String execute() {
+    public void execute() {
         final int calcResult = calc(name);
         final int resultAfterReduction = applyReduction(calcResult);
-        return String.format("\n[%s]\t\t\t%s \t\t\t%s%s",
+        final String result = String.format("\n[%s]\t\t\t%s \t\t\t%s%s",
                 this.getClass().getSimpleName(),
                 name,
                 resultAfterReduction,
                 printDescription(resultAfterReduction));
+        System.out.println(result);
     }
 
     private String printDescription(int resultAfterReduction) {
