@@ -1,5 +1,4 @@
-import numerology.FullNumerology;
-import numerology.converter.Kaballah;
+package numerology;
 
 class Main {
 
