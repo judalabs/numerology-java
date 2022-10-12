@@ -1,12 +1,14 @@
+import java.util.stream.Stream;
+
 import numerology.Kaballah;
 
 class Main {
 
     public static void main(String[] args) {
-        boolean printPartials = true;
 
-        new Kaballah("Stefanny Yumi Nemoto", printPartials).execute();
-        new Kaballah("Rodrigo Judá Conceição", printPartials).execute();
+        Stream.of("Stefanny Yumi Nemoto",
+                        "Rodrigo Judá Conceição"
+                ).forEach(nome -> new Kaballah(nome, false).execute());
     }
 
 }

@@ -49,7 +49,7 @@ abstract class BaseMath {
     }
 
     private String printDescription(int resultAfterReduction) {
-        if(!printPartials) return null;
+        if(!printPartials) return "";
         final String directory = DescriptionUtils.getDirectory(resultAfterReduction);
         try {
             return String.join("\n",
