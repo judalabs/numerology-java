@@ -4,14 +4,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import numerology.utils.ResultsUtils;
 
 public abstract class BaseMath {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(BaseMath.class);
     static final int INIT = 'a';
 
     protected String input;
@@ -70,10 +66,10 @@ public abstract class BaseMath {
     }
 
     private void printFinalResult(int resultAfterReduction) {
-        LOGGER.info("\n[{}]\t \t\t\t{}\n{}",
+        System.out.println(String.format("\n[%s]\t \t\t\t%s\n%s",
                 getNameOf(),
                 resultAfterReduction,
-                printPartials ? getDescription() + printDescriptionPart(resultAfterReduction): "");
+                printPartials ? getDescription() + printDescriptionPart(resultAfterReduction): ""));
     }
 
     private String printDescriptionPart(int resultAfterReduction) {

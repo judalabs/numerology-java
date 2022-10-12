@@ -2,23 +2,18 @@ package numerology;
 
 import java.util.function.IntUnaryOperator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import numerology.converter.Pythagorean;
 import numerology.destiny.Destiny;
-import numerology.mission.Mission;
 import numerology.expression.Expression;
 import numerology.impression.Impression;
+import numerology.mission.Mission;
 import numerology.motivation.Motivation;
 import numerology.psychic.PsychicNumber;
 
 public class FullNumerology {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(FullNumerology.class);
-
     FullNumerology(String name, String birthDate, boolean printPartials) {
-        LOGGER.info("{} : {}", name, birthDate);
+        System.out.println(name + ": " + birthDate);
         final IntUnaryOperator convertIt = Pythagorean::getValue;
 
         final Motivation motivation = new Motivation(name, printPartials, convertIt);
