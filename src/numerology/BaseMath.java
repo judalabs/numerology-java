@@ -40,17 +40,22 @@ abstract class BaseMath {
     public String execute() {
         final int calcResult = calc(name);
         final int resultAfterReduction = applyReduction(calcResult);
-        return String.format("\n[%s]\t\t\t%s \t\t\t%s\n\nDESCRIPTION:\n%s\n",
+        return String.format("\n[%s]\t\t\t%s \t\t\t%s%s",
                 this.getClass().getSimpleName(),
                 name,
-                resultAfterReduction, printDescription(resultAfterReduction));
+                resultAfterReduction,
+                printDescription(resultAfterReduction));
     }
 
     private String printDescription(int resultAfterReduction) {
         if(!printPartials) return null;
         final String directory = DescriptionUtils.getDirectory(resultAfterReduction);
         try {
-            return String.join("", Files.readAllLines(Path.of(directory)));
+            return String.join("\n",
+                    "\nDESCRIPTION:",
+                    String.join("", Files.readAllLines(Path.of(directory))),
+                    "-------------------------------------------------------------\n"
+                );
 
         } catch (Exception e) {
             throw new RuntimeException("cound not execute description "+ resultAfterReduction);
