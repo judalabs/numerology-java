@@ -37,7 +37,7 @@ public class Impression extends BaseMath {
     }
 
     public boolean isConsonant(int letter) {
-        if(' '== letter) return true;
+        if(' ' == letter) return true;
         for(char vowel : VOWELS) {
             if(vowel == letter)
                 return false;
