@@ -1,4 +1,4 @@
-package utils;
+package numerology.utils;
 
 import java.util.Arrays;
 

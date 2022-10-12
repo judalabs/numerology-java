@@ -2,8 +2,6 @@ package numerology;
 
 import java.util.function.IntUnaryOperator;
 
-import numerology.converter.Kaballah;
-import numerology.converter.KaballahTable;
 import numerology.converter.Pythagorean;
 import numerology.destiny.Destiny;
 import numerology.mission.Mission;

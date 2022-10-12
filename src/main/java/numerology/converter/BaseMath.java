@@ -4,7 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-import utils.ResultsUtils;
+import numerology.utils.ResultsUtils;
 
 public abstract class BaseMath {
 
