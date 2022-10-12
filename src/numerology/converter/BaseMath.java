@@ -12,7 +12,8 @@ public abstract class BaseMath {
 
     protected final String name;
     protected final boolean printPartials;
-    private List<Integer> masterNumbers = List.of(9,11,18, 22, 33, 44, 55, 66, 77, 108);
+    private List<Integer> commonMasterNumbers = List.of(11, 22);
+    private List<Integer> uncommonMasterNumbers = List.of(18, 33, 44, 55, 66, 77, 108);
 
     protected BaseMath(String name, boolean printPartials) {
         this.printPartials = printPartials;
@@ -29,26 +30,30 @@ public abstract class BaseMath {
         else System.out.print(value + "+");
     }
 
-    public int applyReduction(int number) {
-        if(number <= 9 || masterNumbers.contains(number)) return number;
+    public int applyTheosophicalReduction(int number) {
+        if(number <= 9 || commonMasterNumbers.contains(number)) return number;
         if(printPartials)
             System.out.println("\nReduction of " + number);
 
-        final int somaDigitos = String.valueOf(number).chars()
+        final int sumOfDigits = String.valueOf(number).chars()
                 .map(Character::getNumericValue)
                 .sum();
 
-        return applyReduction(somaDigitos);
+        return applyTheosophicalReduction(sumOfDigits);
+    }
+
+    protected String getNameOf() {
+        return this.getClass().getSimpleName();
     }
 
     public void execute() {
         final int calcResult = calc();
-        final int resultAfterReduction = applyReduction(calcResult);
+        final int resultAfterReduction = applyTheosophicalReduction(calcResult);
         final String result = String.format("\n[%s]\t\t\t%s \t\t\t%s\n%s%s",
-                this.getClass().getSimpleName(),
+                getNameOf(),
                 name,
                 resultAfterReduction,
-                getDescription(),
+                printPartials? getDescription() : "",
                 printDescription(resultAfterReduction));
         System.out.println(result);
     }
