@@ -11,8 +11,13 @@ public class Destiny extends BaseMath {
     @Override
     public int calc() {
         if(name == null || name.length() == 0) return 0;
-        final String numbers = super.name.replaceAll("/-", "");
-        return numbers.chars().map(Character::getNumericValue).sum();
+        final String[] birthParts = name.split("/");
+        int finalSum = 0;
+        for(String birthPart : birthParts) {
+            final int sumBirthPart = birthPart.chars().map(Character::getNumericValue).sum();
+            finalSum += applyReduction(sumBirthPart);
+        }
+        return finalSum;
     }
 
     @Override

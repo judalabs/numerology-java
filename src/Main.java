@@ -1,4 +1,5 @@
 import numerology.FullNumerology;
+import numerology.converter.Kaballah;
 
 class Main {
 
@@ -7,7 +8,7 @@ class Main {
 
         new FullNumerology("Rodrigo Judá Conceição", "20/11/1992", printPartials);
 
-//        new Kaballah("Miguel", printPartials).execute();
+//        new Kaballah("wwwwwc", printPartials).execute();
     }
 
 }

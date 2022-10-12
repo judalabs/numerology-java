@@ -29,7 +29,7 @@ public abstract class BaseMath {
         else System.out.print(value + "+");
     }
 
-    int applyReduction(int number) {
+    public int applyReduction(int number) {
         if(number <= 9 || masterNumbers.contains(number)) return number;
         if(printPartials)
             System.out.println("\nReduction of " + number);
