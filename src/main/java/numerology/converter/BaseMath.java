@@ -4,18 +4,22 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import numerology.utils.ResultsUtils;
 
 public abstract class BaseMath {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(BaseMath.class);
     static final int INIT = 'a';
 
     protected String input;
     protected final boolean printPartials;
-    protected final char[] VOWELS = new char[]{'a', 'e', 'i', 'o', 'u'};
+    protected static final char[] VOWELS = new char[]{'a', 'e', 'i', 'o', 'u'};
     private List<Integer> commonMasterNumbers = List.of(11, 22);
     private boolean useMasterNumbers = true;
-    //    private List<Integer> uncommonMasterNumbers = List.of(18, 33, 44, 55, 66, 77, 108);
+    private List<Integer> uncommonMasterNumbers = List.of(18, 33, 44, 55, 66, 77, 108);
 
     protected BaseMath(boolean printPartials) {
         this.printPartials = printPartials;
@@ -66,15 +70,13 @@ public abstract class BaseMath {
     }
 
     private void printFinalResult(int resultAfterReduction) {
-        System.out.println(String.format("\n[%s]\t \t\t\t%s\n%s%s",
+        LOGGER.info("\n[{}]\t \t\t\t{}\n{}",
                 getNameOf(),
                 resultAfterReduction,
-                printPartials ? getDescription() : "",
-                printDescriptionPart(resultAfterReduction)));
+                printPartials ? getDescription() + printDescriptionPart(resultAfterReduction): "");
     }
 
     private String printDescriptionPart(int resultAfterReduction) {
-        if(!printPartials) return "";
         final String directory = ResultsUtils.getDirectory(resultAfterReduction);
         try {
             return String.join("\n",
@@ -84,7 +86,7 @@ public abstract class BaseMath {
                 );
 
         } catch (Exception e) {
-            throw new RuntimeException("cound not execute description "+ resultAfterReduction);
+            throw new DirectoryNotFoundException(resultAfterReduction);
         }
     }
 
