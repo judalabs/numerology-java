@@ -2,7 +2,7 @@ package utils;
 
 import java.util.Arrays;
 
-public enum DescriptionUtils {
+public enum ResultsUtils {
     ONE(1),
     TWO(2),
     THREE(3),
@@ -24,14 +24,14 @@ public enum DescriptionUtils {
     ;
     public final int value;
 
-    DescriptionUtils(int value) {
+    ResultsUtils(int value) {
         this.value = value;
     }
 
     public static String getDirectory(int resultAfterReduction) {
-        return Arrays.stream(DescriptionUtils.values())
+        return Arrays.stream(ResultsUtils.values())
                 .filter(d -> d.value == resultAfterReduction)
-                .map(DescriptionUtils::getDirectory)
+                .map(ResultsUtils::getDirectory)
                 .findFirst()
                 .orElseThrow();
     }

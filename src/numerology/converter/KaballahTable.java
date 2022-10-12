@@ -3,7 +3,7 @@ package numerology.converter;
 import java.util.Arrays;
 import java.util.List;
 
-enum KaballahTable {
+public enum KaballahTable {
 
     ZERO(0, List.of(' ')),
     ONE(1, List.of('a', 'i', 'q', 'j', 'y')),

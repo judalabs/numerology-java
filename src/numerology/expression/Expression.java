@@ -1,6 +1,8 @@
 package numerology.expression;
 
 import numerology.converter.BaseMath;
+import numerology.impression.Impression;
+import numerology.motivation.Motivation;
 
 public class Expression extends BaseMath {
 
@@ -10,7 +12,8 @@ public class Expression extends BaseMath {
 
     @Override
     public int calc() {
-        return name.length();
+        return new Impression(name, false).calc() +
+                new Motivation(name, false).calc();
     }
 
     @Override
@@ -23,5 +26,10 @@ public class Expression extends BaseMath {
                 "da sua personalidade, motivada pelos seus conteúdos internos, da Alma, (a Motivação) e\n" +
                 "externos, do Ego (a Impressão); resumindo o conjunto completo da sua personalidade. É o\n" +
                 "número do nome da pessoa.";
+    }
+
+    @Override
+    protected String getNameOf() {
+        return "Expression | Personality";
     }
 }

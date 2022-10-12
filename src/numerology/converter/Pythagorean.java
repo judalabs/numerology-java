@@ -2,9 +2,9 @@ package numerology.converter;
 
 import java.text.Normalizer;
 
-class Pythagorean extends BaseMath {
+public class Pythagorean extends BaseMath {
 
-    private final int MULTIPLE = 9;
+    private static final int MULTIPLE = 9;
 
     public Pythagorean(String name) {
         super(name, true);
@@ -12,11 +12,16 @@ class Pythagorean extends BaseMath {
 
     @Override
     public int calc() {
-        return Normalizer.normalize(name, Normalizer.Form.NFD).chars()
-                .filter(letter -> letter != ' ')
-                .map(letter -> (letter - INIT) % MULTIPLE + 1)
+        return Normalizer.normalize(name, Normalizer.Form.NFD)
+                .replaceAll("[^\\p{ASCII}]", "").chars()
+                .map(Pythagorean::getValue)
                 .peek(this::printPartials)
                 .sum();
+    }
+
+    public static int getValue(int letter) {
+        if(letter == ' ') return 0;
+        return (letter - INIT) % MULTIPLE + 1;
     }
 
     @Override

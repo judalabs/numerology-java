@@ -12,14 +12,15 @@ public class FullNumerology {
 
     public FullNumerology(String name, String birthDate, boolean printPartials) {
 
-        new Kaballah(name, printPartials).execute();
-        new Expression(name, printPartials).execute();      //
-        new Impression(name, printPartials).execute();      //
-        new Motivation(name, printPartials).execute();
+        new PsychicNumber(birthDate, printPartials).calcAndPrintReduced();
+        new Motivation(name, printPartials).calcAndPrintReduced();
+        new Impression(name, printPartials).calcAndPrintReduced();      //
+        new Expression(name, printPartials).calcAndPrintReduced();      //
 
-        new Mission(birthDate, printPartials).execute();    //
-        new Destiny(birthDate, printPartials).execute();
-        new PsychicNumber(birthDate, printPartials).execute();
+        new Kaballah(name, printPartials).calcAndPrintReduced();
+
+        new Destiny(birthDate, printPartials).calcAndPrintReduced();
+        new Mission(birthDate, printPartials).calcAndPrintReduced();    //
         // talento oculto, missoes karmicas, tendencias ocultas, resposta subconciente,
         // dividas karmicas, ciclos de vida, desafios, momentos decisivos
     }

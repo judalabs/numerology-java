@@ -14,7 +14,7 @@ public class Destiny extends BaseMath {
         final String[] birthParts = name.split("/");
         int finalSum = 0;
         for(String birthPart : birthParts) {
-            final int sumBirthPart = birthPart.chars().map(Character::getNumericValue).sum();
+            final int sumBirthPart = sumDigits(birthPart);
             finalSum += applyTheosophicalReduction(sumBirthPart);
         }
         return finalSum;

@@ -1,24 +1,29 @@
 package numerology.impression;
 
 import java.text.Normalizer;
+import java.util.function.IntUnaryOperator;
 
 import numerology.converter.BaseMath;
+import numerology.converter.Pythagorean;
 
 public class Impression extends BaseMath {
 
-    protected final char[] VOWELS = new char[]{'a', 'e', 'i', 'o', 'u'};
+    private final IntUnaryOperator convertIt;
 
     public Impression(String name, boolean printPartials) {
         super(name, printPartials);
+        convertIt = Pythagorean::getValue;
     }
 
     @Override
     public int calc() {
-        return (int) Normalizer.normalize(name, Normalizer.Form.NFD)
+        return Normalizer.normalize(name, Normalizer.Form.NFD)
                 .replaceAll("[^\\p{ASCII}]", "")
                 .chars()
-                .filter(this::contains)
-                .count();
+                .filter(this::isConsonant)
+                .map(convertIt)
+                .peek(this::printPartials)
+                .sum();
     }
 
     @Override
@@ -31,7 +36,8 @@ public class Impression extends BaseMath {
                 "aparências e não busca conhecer a essência da pessoa.\n";
     }
 
-    public boolean contains(int letter) {
+    public boolean isConsonant(int letter) {
+        if(' '== letter) return true;
         for(char vowel : VOWELS) {
             if(vowel == letter)
                 return false;

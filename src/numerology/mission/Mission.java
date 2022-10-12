@@ -11,8 +11,8 @@ public class Mission extends BaseMath {
     @Override
     public int calc() {
         if(name == null || name.length() == 0) return 0;
-        final String numbers = super.name.replaceAll("/-", "");
-        return numbers.chars().map(Character::getNumericValue).sum();
+        final String numbersContainedInBirthday = super.name.replaceAll("/", "");
+        return sumDigits(numbersContainedInBirthday);
     }
 
     @Override
