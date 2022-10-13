@@ -2,7 +2,6 @@ package numerology;
 
 import java.util.function.IntUnaryOperator;
 
-import numerology.converter.Pythagorean;
 import numerology.destiny.Destiny;
 import numerology.expression.Expression;
 import numerology.impression.Impression;
@@ -12,18 +11,13 @@ import numerology.psychic.PsychicNumber;
 
 public class FullNumerology {
 
-    FullNumerology(String name, String birthDate, boolean printPartials) {
+    FullNumerology(String name, String birthDate, boolean printPartials, IntUnaryOperator convertIt) {
         System.out.println(name + ": " + birthDate);
-        final IntUnaryOperator convertIt = Pythagorean::getValue;
 
-        final Motivation motivation = new Motivation(name, printPartials, convertIt);
-        final Impression impression = new Impression(name, printPartials, convertIt);
-        motivation.calcAndPrintReduced();
-        impression.calcAndPrintReduced();
+        final int motivation = new Motivation(name, printPartials, convertIt).calcAndPrintReduced();
+        final int impression = new Impression(name, printPartials, convertIt).calcAndPrintReduced();
 
-        final int expression = new Expression(motivation, impression, printPartials).calcAndPrintReduced();
-//        new Kaballah(name, printPartials).withInput(name).calcAndPrintReduced();
-        new Pythagorean(name, printPartials).withInput(name).calcAndPrintReduced();
+        final int expression = new Expression(motivation + impression, printPartials).calcAndPrintReduced();
 
         new PsychicNumber(birthDate, printPartials).calcAndPrintReduced();
         final int destiny = new Destiny(printPartials).withInput(birthDate).calcAndPrintReduced();

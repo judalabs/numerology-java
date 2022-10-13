@@ -7,6 +7,7 @@ import numerology.converter.BaseMath;
 
 public class Motivation extends BaseMath {
 
+    private boolean lastIsVowel = false;
     private final IntUnaryOperator convertIt;
 
     public Motivation(String name, boolean printPartials, IntUnaryOperator getValue) {
@@ -18,7 +19,6 @@ public class Motivation extends BaseMath {
     @Override
     public int calc() {
         return Normalizer.normalize(input, Normalizer.Form.NFD)
-                .replaceAll("[^\\p{ASCII}]", "")
                 .chars()
                 .filter(this::isVowel)
                 .map(convertIt)
@@ -28,12 +28,17 @@ public class Motivation extends BaseMath {
 
 
     public boolean isVowel(int letter) {
-        if(' '== letter) return true;
-        for(char vowel : VOWELS) {
-            if(vowel == letter)
-                return true;
+        if(' ' == letter) {
+            lastIsVowel = false;
+            return true;
         }
-        return false;
+        for(char vowel : VOWELS) {
+            if(vowel == letter) {
+                lastIsVowel = true;
+                return true;
+            }
+        }
+        return lastIsVowel && !String.valueOf(Character.valueOf((char) letter)).matches("[a-z]");
     }
 
     @Override

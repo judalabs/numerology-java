@@ -1,23 +1,19 @@
 package numerology.expression;
 
 import numerology.converter.BaseMath;
-import numerology.impression.Impression;
-import numerology.motivation.Motivation;
 
 public class Expression extends BaseMath {
 
-    private final Motivation motivation;
-    private final Impression impression;
+    private final int motivationExpression;
 
-    public Expression(Motivation motivation, Impression impression, boolean printPartials) {
+    public Expression(int motivationExpression, boolean printPartials) {
         super(printPartials);
-        this.motivation = motivation;
-        this.impression = impression;
+        this.motivationExpression = motivationExpression;
     }
 
     @Override
     public int calc() {
-        return motivation.calc() + impression.calc();
+        return motivationExpression;
     }
 
     @Override

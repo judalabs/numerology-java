@@ -56,6 +56,11 @@ public abstract class BaseMath {
         return this.getClass().getSimpleName();
     }
 
+    public int calcReduced() {
+        final int calcResult = calc();
+        return applyTheosophicalReduction(calcResult);
+    }
+
     public int calcAndPrintReduced() {
         final int calcResult = calc();
         final int resultAfterReduction = applyTheosophicalReduction(calcResult);

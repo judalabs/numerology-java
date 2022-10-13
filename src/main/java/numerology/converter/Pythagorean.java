@@ -21,7 +21,7 @@ public class Pythagorean extends BaseMath {
     }
 
     public static int getValue(int letter) {
-        if(letter == ' ') return 0;
+        if(letter == ' ' || !String.valueOf(Character.valueOf((char) letter)).matches("[a-z]")) return 0;
         return (letter - INIT) % MULTIPLE + 1;
     }
 

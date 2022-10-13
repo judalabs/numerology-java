@@ -34,7 +34,7 @@ class ExpressionTest {
         assertThat(buildKaballahKeyValue("a cdf e"), hasEntry(3,3));
         assertThat(buildKaballahKeyValue("stefanny yumi nemoto"), hasEntry(4,4));
 
-//        assertThat(buildKaballahKeyValue("ã ĉdf é"), hasEntry(1,1));
+        assertThat(buildKaballahKeyValue("ã ĉdf é"), hasEntry(6,6));
     }
 
     private static Map<Integer, Integer> buildPythagoreanKeyValue(String name) {
@@ -43,7 +43,7 @@ class ExpressionTest {
 
         final Motivation motivation = new Motivation(name, printPartials, getValue);
         final Impression impression = new Impression(name, printPartials, getValue);
-        final Expression expression = new Expression(motivation, impression, printPartials);
+        final Expression expression = new Expression(motivation.calcReduced() +  impression.calcReduced(), printPartials);
         final Pythagorean pythagorean = new Pythagorean(name, printPartials);
         return Map.of(pythagorean.calcAndPrintReduced(), expression.calcAndPrintReduced());
     }
@@ -55,8 +55,8 @@ class ExpressionTest {
 
         final Motivation motivation = new Motivation(name, printPartials, getValue);
         final Impression impression = new Impression(name, printPartials, getValue);
-        final Expression expression = new Expression(motivation, impression, printPartials);
-        final Kaballah pythagorean = new Kaballah(name, printPartials);
-        return Map.of(pythagorean.calcAndPrintReduced(), expression.calcAndPrintReduced());
+        final Expression expression = new Expression(motivation.calcReduced() +  impression.calcReduced(), printPartials);
+        final Kaballah kaballah = new Kaballah(name, printPartials);
+        return Map.of(kaballah.calcAndPrintReduced(), expression.calcAndPrintReduced());
     }
 }

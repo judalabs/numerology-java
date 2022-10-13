@@ -7,6 +7,7 @@ import numerology.converter.BaseMath;
 
 public class Impression extends BaseMath {
 
+    private boolean lastIsVowel = false;
     private final IntUnaryOperator convertIt;
 
     public Impression(String name, boolean printPartials, IntUnaryOperator convertIt) {
@@ -18,7 +19,6 @@ public class Impression extends BaseMath {
     @Override
     public int calc() {
         return Normalizer.normalize(input, Normalizer.Form.NFD)
-                .replaceAll("[^\\p{ASCII}]", "")
                 .chars()
                 .filter(this::isConsonant)
                 .map(convertIt)
@@ -37,11 +37,20 @@ public class Impression extends BaseMath {
     }
 
     public boolean isConsonant(int letter) {
-        if(' ' == letter) return true;
-        for(char vowel : VOWELS) {
-            if(vowel == letter)
-                return false;
+        if(' ' == letter) {
+            lastIsVowel = true;
+            return true;
         }
+        for(char vowel : VOWELS) {
+            if(vowel == letter) {
+                lastIsVowel = true;
+                return false;
+            }
+        }
+        if(lastIsVowel && !String.valueOf(Character.valueOf((char) letter)).matches("[a-z]")) {
+            return false;
+        }
+        lastIsVowel = false;
         return true;
     }
 }
