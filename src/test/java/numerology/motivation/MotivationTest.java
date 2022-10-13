@@ -28,5 +28,6 @@ class MotivationTest {
         assertEquals(2, new Motivation("a e i o u", false, KaballahTable::getValue).calcAndPrintReduced());
         assertEquals(6, new Motivation("a bcd e", false, KaballahTable::getValue).calcAndPrintReduced());
         assertEquals(4, new Motivation("ã bĉd", false, KaballahTable::getValue).calcAndPrintReduced());
+        assertEquals(6, new Motivation("Conceição", false, KaballahTable::getValue).calcAndPrintReduced());
     }
 }

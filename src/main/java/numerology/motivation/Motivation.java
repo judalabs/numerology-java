@@ -38,7 +38,9 @@ public class Motivation extends BaseMath {
                 return true;
             }
         }
-        return lastIsVowel && !String.valueOf(Character.valueOf((char) letter)).matches("[a-z]");
+        final boolean isAccent = !String.valueOf(Character.valueOf((char) letter)).matches("[a-z]");
+        lastIsVowel = lastIsVowel && isAccent;
+        return lastIsVowel;
     }
 
     @Override

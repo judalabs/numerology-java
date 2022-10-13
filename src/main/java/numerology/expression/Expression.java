@@ -4,16 +4,16 @@ import numerology.converter.BaseMath;
 
 public class Expression extends BaseMath {
 
-    private final int motivationExpression;
+    private final int motivationImpression;
 
-    public Expression(int motivationExpression, boolean printPartials) {
+    public Expression(int motivationImpression, boolean printPartials) {
         super(printPartials);
-        this.motivationExpression = motivationExpression;
+        this.motivationImpression = motivationImpression;
     }
 
     @Override
     public int calc() {
-        return motivationExpression;
+        return motivationImpression;
     }
 
     @Override

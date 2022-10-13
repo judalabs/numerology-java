@@ -16,12 +16,11 @@ public class FullNumerology {
 
         final int motivation = new Motivation(name, printPartials, convertIt).calcAndPrintReduced();
         final int impression = new Impression(name, printPartials, convertIt).calcAndPrintReduced();
-
-        final int expression = new Expression(motivation + impression, printPartials).calcAndPrintReduced();
+        final int motivationImpression = motivation + impression;
+        final int expression = new Expression(motivationImpression, printPartials).calcAndPrintReduced();
 
         new PsychicNumber(birthDate, printPartials).calcAndPrintReduced();
         final int destiny = new Destiny(printPartials).withInput(birthDate).calcAndPrintReduced();
-
         new Mission(expression + destiny, printPartials).calcAndPrintReduced();
 
         // talento oculto, missoes karmicas, tendencias ocultas, resposta subconciente,
